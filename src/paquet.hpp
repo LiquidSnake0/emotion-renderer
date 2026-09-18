@@ -1,4 +1,4 @@
-// Les 256 octets d'une image, tels qu'emotion-emulator les publie. Copie de travail de
+// Les 256 octets d'une image, tels qu'emotion-calculator les publie. Copie de travail de
 // GpuPacket.cs : la source de verite est la-bas, et docs/contrat.md porte la meme table.
 #pragma once
 #include <array>
@@ -9,7 +9,7 @@ namespace emotion {
 
 constexpr int TaillePaquet = 256;
 
-// Les decalages, nommes comme dans outils/fenetre.py d'emotion-emulator.
+// Les decalages, nommes comme dans outils/fenetre.py d'emotion-calculator.
 namespace P {
 constexpr int Sequence = 4, Temps = 8, Niveau = 16, Bpm = 20, Phase = 24, Frappes = 40, Nouveaute = 47;
 constexpr int Bandes = 48, Relais = 60, AccordGamme = 61;

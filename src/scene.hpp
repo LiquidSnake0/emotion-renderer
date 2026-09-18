@@ -1,5 +1,5 @@
 // La composition : une scene par platine, a partir des cases signees. Port de ce que fait
-// outils/fenetre.py dans emotion-emulator (registres / etiquette_scene / _suivre_les_rangs).
+// outils/fenetre.py dans emotion-calculator (registres / etiquette_scene / _suivre_les_rangs).
 // Rien ne dessine ici : on calcule des rectangles et des etats, le rendu les prend.
 #pragma once
 #include <algorithm>

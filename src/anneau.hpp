@@ -1,4 +1,4 @@
-// L'anneau partage d'emotion-emulator, cote lecteur. Sans verrou, sans attente : on lit la
+// L'anneau partage d'emotion-calculator, cote lecteur. Sans verrou, sans attente : on lit la
 // derniere case publiee, et l'on jette ce qu'on a rate — une image de 21 ms en retard n'a
 // aucune valeur.
 #pragma once

@@ -1,6 +1,6 @@
 # Le contrat : l'anneau et les 256 octets
 
-Copie de travail de `GpuPacket.cs` et `SharedRing.cs` (emotion-emulator). **La source de
+Copie de travail de `GpuPacket.cs` et `SharedRing.cs` (emotion-calculator). **La source de
 vérité est là-bas.** Relevé le 18 septembre 2026.
 
 ## L'anneau partagé

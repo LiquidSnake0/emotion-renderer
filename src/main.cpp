@@ -4,7 +4,7 @@
 //
 // Rien ne dessine encore. Avant la premiere image GL, une seule chose a prouver : que ce
 // programme lit exactement ce que le moteur ecrit, y compris pendant un relais entre deux
-// disques — le meme contrat que outils/fenetre.py d'emotion-emulator.
+// disques — le meme contrat que outils/fenetre.py d'emotion-calculator.
 #include <chrono>
 #include <cstdio>
 #include <cstdlib>

@@ -1,6 +1,6 @@
 # La scène : ce que le rendu compose
 
-Tiré de `emotion-emulator/outils/fenetre.py` (16–17 septembre 2026), qui est la référence.
+Tiré de `emotion-calculator/outils/fenetre.py` (16–17 septembre 2026), qui est la référence.
 Ce document dit **quoi**, `src/scene.hpp` dit **comment** en C++.
 
 ## Une scène par platine

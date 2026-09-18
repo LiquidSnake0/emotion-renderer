@@ -4,12 +4,12 @@
 qui sort réellement des enceintes, composée à partir de ce que le moteur d'analyse publie —
 jamais à partir d'un fichier, jamais à partir d'une commande.
 
-Troisième pièce d'un ensemble de trois, et la dernière à être construite :
+Troisième pièce de l'ensemble **Emotion Emulator**, et la dernière à être construite :
 
 | pièce | rôle | parle à |
 |---|---|---|
-| [crate](https://github.com/LiquidSnake0/crate) | la base du bac : BPM joué, clé transposée, couleur, enchaînements possibles | emotion-emulator, par HTTP |
-| [emotion-emulator](https://github.com/LiquidSnake0/emotion-emulator) | l'oreille : écoute le master et le cue, sépare les sources, suit le tempo, publie 256 octets par image | ce dépôt, par mémoire partagée |
+| [crate](https://github.com/LiquidSnake0/crate) | la base du bac : BPM joué, clé transposée, couleur, enchaînements possibles | emotion-calculator, par HTTP |
+| [emotion-calculator](https://github.com/LiquidSnake0/emotion-calculator) | l'oreille : écoute le master et le cue, sépare les sources, suit le tempo, publie 256 octets par image (dépôt appelé `emotion-emulator` jusqu'au 18.09.2026 ; l'anneau `/dev/shm/emotion-emulator` garde ce nom) | ce dépôt, par mémoire partagée |
 | **emotion-renderer** | l'œil : lit les 256 octets et compose l'image, une scène par platine | le rétroprojecteur |
 
 Ce dépôt est né le 18 septembre 2026, **avant le matériel**. Il porte tout ce que les deux
@@ -23,7 +23,7 @@ huit cases, chacune marquée de sa platine (1, 2, ou 3 pour le reste partagé). 
 tout ce qui est P1 dans la scène de gauche, P2 à droite, le reste à cheval sur la frontière.
 Quand un disque entre, sa scène s'ouvre pendant que l'autre se resserre ; quand il sort, sa
 scène se ferme. **P1 est toujours à gauche de P2**, quelle que soit celle qui joue : rien ne
-saute de côté au retrait. C'est mesuré et illustré dans emotion-emulator, sur son mock
+saute de côté au retrait. C'est mesuré et illustré dans emotion-calculator, sur son mock
 (`outils/fenetre.py`), qui est la référence de ce que ce dépôt doit rendre.
 
 **Toute ouverture ou fermeture est une grandeur lissée, jamais un état.** Un cadre qui
@@ -62,7 +62,7 @@ Le rendu lit la dernière case publiée de l'anneau et ignore ce qu'il a raté.
 L'analyse en prend 21. Le rendu prédit ce qui est périodique (le kick, par une horloge
 verrouillée sur la grille publiée) et ne prédit jamais ce qui ne l'est pas.
 
-**Aucun réseau entre le moteur et le rendu.** Le navigateur a été retiré d'emotion-emulator
+**Aucun réseau entre le moteur et le rendu.** Le navigateur a été retiré d'emotion-calculator
 pour cette raison : la page recevait par WebSocket ce que le rendu lira sur PCIe. Ici le
 contrat est un anneau sans verrou en mémoire partagée, 256 octets par image, 1,5 µs à
 l'écriture.
@@ -70,7 +70,7 @@ l'écriture.
 ## Le contrat
 
 Les 256 octets et l'anneau sont décrits octet par octet dans [`docs/contrat.md`](docs/contrat.md).
-Ils viennent de `GpuPacket.cs` et `SharedRing.cs` d'emotion-emulator ; **la source de vérité
+Ils viennent de `GpuPacket.cs` et `SharedRing.cs` d'emotion-calculator ; **la source de vérité
 est là-bas**, ce fichier en est la copie de travail, à relire à chaque changement de paquet.
 La composition des scènes et les gestes sont dans [`docs/scene.md`](docs/scene.md).
 
@@ -86,7 +86,7 @@ src/main.cpp      la sonde : imprime ce que le rendu recevrait, image par image
 ```sh
 make                          # g++ seul, aucune dépendance
 ./bin/emotion-renderer --sonde 10        # dix secondes de paquets, depuis /dev/shm/emotion-emulator
-./outils/rejouer.sh <fondu.pak> 10       # rejoue un fondu enregistré par emotion-emulator, et la sonde le lit
+./outils/rejouer.sh <fondu.pak> 10       # rejoue un fondu enregistré par emotion-calculator, et la sonde le lit
 ```
 
 **Rien ne dessine encore.** La sonde est là pour prouver une chose avant tout le reste : que
@@ -109,7 +109,7 @@ enregistrés (`~/.cache/emotion-emulator/relais/*.pak`), rejoués par la sonde d
 
 ## Feuille de route
 
-1. Relecture d'emotion-emulator, finalisation du crate, DDJ-FLX4 branché — rien ici avant.
+1. Relecture d'emotion-calculator, finalisation du crate, DDJ-FLX4 branché — rien ici avant.
 2. La sonde lit l'anneau en direct pendant un set rejoué, sans perdre une image.
 3. Une fenêtre OpenGL qui rend la composition de `scene.hpp`, comparée image par image au mock.
 4. Le mur.
